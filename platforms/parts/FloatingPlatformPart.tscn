@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://platforms/parts/floating_platform_part.gd" type="Script" id=1]
-[ext_resource path="res://PlatformPart.tscn" type="PackedScene" id=2]
+[ext_resource path="res://platforms/PlatformPart.tscn" type="PackedScene" id=2]
 
 [node name="FloatingPlatformPart" type="Spatial"]
 script = ExtResource( 1 )

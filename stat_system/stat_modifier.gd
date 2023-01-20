@@ -1,12 +1,19 @@
-extends Resource
-
 class_name StatModifier
 
-enum StatType {
-	HEALTH,
-	ARMOR,
-	MOVE_SPEED,
+enum StatModifierType {
+	ADD,
+	MULTIPLY
 }
 
-export(StatType) var stat
-export(float) var value
+var type
+var amount
+
+
+func calculate(value):
+	match type:
+		StatModifierType.ADD:
+			return value + amount
+		StatModifierType.MULTIPLY:
+			return value * amount
+	
+	return value

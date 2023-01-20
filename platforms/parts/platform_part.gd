@@ -13,7 +13,7 @@ func _ready():
 
 
 func take_damage(amount: int) -> void:
-	health -= 1
+	health -= amount
 	
 	if health <= 0:
 		queue_free()
