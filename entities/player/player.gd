@@ -19,13 +19,18 @@ func _ready() -> void:
 
 
 func get_sprite_blend_position() -> int:
-	return 1 if _pivot.rotation_degrees.y >= 0 and _pivot.rotation_degrees.y <= 180 else -1
+	if _pivot.rotation_degrees.y > 0 and _pivot.rotation_degrees.y < 180:
+		return 1
+	elif _pivot.rotation_degrees.y == 0 or _pivot.rotation_degrees.y == 180:
+		return 0
+	else:
+		return -1
 
 
 func handle_movement(delta):
 	var y_velocity = _velocity.y
 	var move_input := get_move_input()
-	var move_direction := Vector3(move_input.x, 0, move_input.y)
+	var move_direction := Vector3(move_input.x, 0, move_input.y).normalized()
 	
 	if move_direction != Vector3.ZERO:
 		var angle := rad2deg(atan2(move_direction.x, move_direction.z))
@@ -35,10 +40,6 @@ func handle_movement(delta):
 		_velocity = _velocity.limit_length(stat_manager.get_stat("move_speed"))
 	
 	_velocity.y = y_velocity
-
-
-func _update_position() -> void:
-	_velocity = move_and_slide_with_snap(_velocity, _snap_vector, Vector3.UP, true)
 
 
 func apply_friction(amount: float) -> void:

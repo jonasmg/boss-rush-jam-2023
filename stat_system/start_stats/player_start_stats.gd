@@ -18,5 +18,9 @@ func _get_stats() -> Dictionary:
 	stats["dash_cooldown"] = dash_cooldown
 	stats["dash_duration"] = dash_duration
 	stats["invincible_duration"] = invincible_duration
+	stats["dirt_element"] = dirt_element
+	stats["water_element"] = water_element
+	stats["fire_element"] = fire_element
+	stats["air_element"] = air_element
 	
 	return stats

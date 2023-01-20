@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://stat_system/start_stats/player_start_stats.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+health = 3
+name = "Null"
+move_speed = 10
+dash_cooldown = 120
+dash_duration = 20
+invincible_duration = 10
+dirt_element = 1
+water_element = 1
+fire_element = 1
+air_element = 1

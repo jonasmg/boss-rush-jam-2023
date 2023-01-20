@@ -13,5 +13,9 @@ func _ready():
 	add_to_group("entity")
 
 
+func _update_position() -> void:
+	_velocity = move_and_slide_with_snap(_velocity, _snap_vector, Vector3.UP, true)
+
+
 func _get_direction() -> float:
 	return _pivot.rotation_degrees.y

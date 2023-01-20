@@ -23,7 +23,7 @@ func get_stat_object(stat_name: String) -> Stat:
 
 
 func set_stats_from_resource(stats_resource: Resource) -> void:
-	var stats = stats_resource._get_stats()
+	var resource_stats = stats_resource._get_stats()
 	
-	for key in stats:
-		add_stat(key, stats[key], true)
+	for key in resource_stats:
+		add_stat(key, resource_stats[key], true)

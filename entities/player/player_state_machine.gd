@@ -12,7 +12,7 @@ func _ready():
 func _state_logic(delta: float):
 	match state:
 		states.idle:
-			pass
+			parent.apply_friction(parent.stat_manager.get_stat("move_deacceleration") * delta)
 		states.walk:
 			parent.handle_movement(delta)
 			parent.apply_gravity(delta)
@@ -20,17 +20,15 @@ func _state_logic(delta: float):
 			parent.handle_movement(delta)
 			parent.apply_gravity(delta)
 	
-	if parent.get_move_input().length() <= 0:
-		parent.apply_friction(parent.stat_manager.get_stat("move_deacceleration") * delta)
-	
 	parent._update_position()
 	
 	var sprite_blend_position = parent.get_sprite_blend_position()
+	print(state, " : ", sprite_blend_position)
 	parent.animation_manager._anim_tree.set("parameters/Idle/blend_position", sprite_blend_position)
 	parent.animation_manager._anim_tree.set("parameters/Walk/blend_position", sprite_blend_position)
 
 
-func _get_transition(delta: float):
+func _get_transition(_delta: float):
 	match state:
 		states.idle:
 			if !parent.is_on_floor():
@@ -49,8 +47,8 @@ func _get_transition(delta: float):
 	return null
 
 
-func _enter_state(new_state, old_state):
-	match state:
+func _enter_state(new_state, _old_state):
+	match new_state:
 		states.idle:
 			parent.animation_manager.set_animation_state("Idle")
 		states.walk:
