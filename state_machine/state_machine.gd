@@ -8,7 +8,7 @@ var states := {}
 onready var parent = get_parent()
 
 
-func _physics_process(delta: float):
+func _process(delta: float):
 	_state_logic(delta)
 	var transition = _get_transition(delta)
 	

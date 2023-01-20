@@ -21,11 +21,6 @@ func _state_logic(delta: float):
 			parent.apply_gravity(delta)
 	
 	parent._update_position()
-	
-	var sprite_blend_position = parent.get_sprite_blend_position()
-	print(state, " : ", sprite_blend_position)
-	parent.animation_manager._anim_tree.set("parameters/Idle/blend_position", sprite_blend_position)
-	parent.animation_manager._anim_tree.set("parameters/Walk/blend_position", sprite_blend_position)
 
 
 func _get_transition(_delta: float):

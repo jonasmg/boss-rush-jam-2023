@@ -32,12 +32,15 @@ func handle_movement(delta):
 	var move_input := get_move_input()
 	var move_direction := Vector3(move_input.x, 0, move_input.y).normalized()
 	
-	if move_direction != Vector3.ZERO:
-		var angle := rad2deg(atan2(move_direction.x, move_direction.z))
-		_pivot.rotation_degrees.y = angle
-		
-		_velocity += move_direction * stat_manager.get_stat("move_acceleration") * delta
-		_velocity = _velocity.limit_length(stat_manager.get_stat("move_speed"))
+	var angle := rad2deg(atan2(move_direction.x, move_direction.z))
+	_pivot.rotation_degrees.y = angle
+	
+	if angle != 0 and angle != 180:
+		animation_manager._anim_tree.set("parameters/Idle/blend_position", move_input)
+		animation_manager._anim_tree.set("parameters/Walk/blend_position", move_input)
+	
+	_velocity += move_direction * stat_manager.get_stat("move_acceleration") * delta
+	_velocity = _velocity.limit_length(stat_manager.get_stat("move_speed"))
 	
 	_velocity.y = y_velocity
 

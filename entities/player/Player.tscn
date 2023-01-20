@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://entities/player/sprites/idle_left.png" type="Texture" id=1]
 [ext_resource path="res://entities/player/player.gd" type="Script" id=2]
@@ -291,45 +291,62 @@ tracks/0/keys = {
 "values": [ "walk_right" ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=57]
+[sub_resource type="AnimationNodeAnimation" id=61]
 animation = "idle_left"
 
-[sub_resource type="AnimationNodeAnimation" id=58]
+[sub_resource type="AnimationNodeAnimation" id=62]
 animation = "idle_right"
 
-[sub_resource type="AnimationNodeAnimation" id=66]
+[sub_resource type="AnimationNodeAnimation" id=63]
+animation = "idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id=64]
 animation = "idle_right"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=59]
-blend_point_0/node = SubResource( 57 )
-blend_point_0/pos = -0.3
-blend_point_1/node = SubResource( 58 )
-blend_point_1/pos = 1.1
-blend_point_2/node = SubResource( 66 )
-blend_point_2/pos = 1.0
+[sub_resource type="AnimationNodeBlendSpace2D" id=65]
+blend_point_0/node = SubResource( 61 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 62 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 63 )
+blend_point_2/pos = Vector2( -0.2, 0.3 )
+blend_point_3/node = SubResource( 64 )
+blend_point_3/pos = Vector2( 0.2, 0.3 )
+blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=61]
+[sub_resource type="AnimationNodeAnimation" id=67]
 animation = "walk_left"
 
-[sub_resource type="AnimationNodeAnimation" id=62]
+[sub_resource type="AnimationNodeAnimation" id=68]
 animation = "walk_right"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=63]
-blend_point_0/node = SubResource( 61 )
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource( 62 )
-blend_point_1/pos = 1.0
+[sub_resource type="AnimationNodeAnimation" id=69]
+animation = "walk_right"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=64]
+[sub_resource type="AnimationNodeAnimation" id=70]
+animation = "walk_left"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=65]
+[sub_resource type="AnimationNodeBlendSpace2D" id=66]
+blend_point_0/node = SubResource( 67 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 68 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 69 )
+blend_point_2/pos = Vector2( 0.2, 0.3 )
+blend_point_3/node = SubResource( 70 )
+blend_point_3/pos = Vector2( -0.2, 0.3 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=71]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=72]
 
 [sub_resource type="AnimationNodeStateMachine" id=60]
-states/Idle/node = SubResource( 59 )
-states/Idle/position = Vector2( 172, 77 )
-states/Walk/node = SubResource( 63 )
-states/Walk/position = Vector2( 353, 77 )
-transitions = [ "Idle", "Walk", SubResource( 64 ), "Walk", "Idle", SubResource( 65 ) ]
+states/Idle/node = SubResource( 65 )
+states/Idle/position = Vector2( 158, 178 )
+states/Walk/node = SubResource( 66 )
+states/Walk/position = Vector2( 331, 178 )
+transitions = [ "Idle", "Walk", SubResource( 71 ), "Walk", "Idle", SubResource( 72 ) ]
 start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
@@ -355,8 +372,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4808, 0 )
 pixel_size = 0.03
 billboard = 1
 frames = SubResource( 4 )
-animation = "idle_right"
-frame = 8
+animation = "walk_left"
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite3D"]
@@ -370,7 +386,7 @@ tree_root = SubResource( 60 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 3 )
-parameters/Idle/blend_position = 0.570275
-parameters/Walk/blend_position = 0.0
+parameters/Idle/blend_position = Vector2( 0.295065, 0.389222 )
+parameters/Walk/blend_position = Vector2( -0.326616, 1.84483 )
 
 [node name="Pivot" type="Spatial" parent="."]
